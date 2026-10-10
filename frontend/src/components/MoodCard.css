@@ -1,0 +1,177 @@
+.mood-card {
+    padding: 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.mood-card::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    right: -55px;
+    top: -55px;
+    background: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+}
+
+.mood-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 24px 55px rgba(91, 63, 53, 0.16);
+}
+
+.mood-card-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    color: #5b4037;
+    background: rgba(255, 255, 255, 0.55);
+
+    box-shadow:
+        inset 2px 2px 7px rgba(255, 255, 255, 0.7),
+        0 8px 18px rgba(91, 63, 53, 0.08);
+}
+
+.mood-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.mood-card-label {
+    color: #a4776c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    margin-bottom: 6px;
+}
+
+.mood-card-content h3 {
+    font-size: 32px;
+    line-height: 1.05;
+    margin-bottom: 7px;
+}
+
+.mood-card-description {
+    color: #806c65;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 300px;
+}
+
+.confidence {
+    margin-top: 18px;
+    max-width: 300px;
+}
+
+.confidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 7px;
+
+    color: #927b72;
+    font-size: 11px;
+}
+
+.confidence-header strong {
+    color: #5b4037;
+    font-size: 11px;
+}
+
+.confidence-track {
+    width: 100%;
+    height: 6px;
+
+    overflow: hidden;
+    border-radius: 10px;
+
+    background: rgba(91, 63, 53, 0.1);
+}
+
+.confidence-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: #8c6a5e;
+
+    transition: width 0.5s ease;
+}
+
+/* Mood variations */
+
+.mood-card.happy {
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 230, 173, 0.55),
+            transparent 35%),
+        rgba(255, 253, 249, 0.82);
+}
+
+.mood-card.sad {
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(190, 207, 225, 0.5),
+            transparent 35%),
+        rgba(255, 253, 249, 0.82);
+}
+
+.mood-card.angry {
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(224, 166, 153, 0.5),
+            transparent 35%),
+        rgba(255, 253, 249, 0.82);
+}
+
+.mood-card.fear {
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(191, 204, 177, 0.55),
+            transparent 35%),
+        rgba(255, 253, 249, 0.82);
+}
+
+.mood-card.surprise {
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(221, 192, 220, 0.5),
+            transparent 35%),
+        rgba(255, 253, 249, 0.82);
+}
+
+@media (max-width: 600px) {
+    .mood-card {
+        padding: 20px;
+        gap: 14px;
+    }
+
+    .mood-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+    }
+
+    .mood-card-content h3 {
+        font-size: 27px;
+    }
+
+    .mood-card-description {
+        font-size: 12px;
+    }
+}

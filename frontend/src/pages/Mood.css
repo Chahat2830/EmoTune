@@ -1,0 +1,1552 @@
+/* =========================================================
+   MOOD PAGE
+========================================================= */
+
+.mood-page {
+    min-height: calc(100vh - 110px);
+
+    padding: 34px 5% 70px;
+
+    background:
+        radial-gradient(circle at 85% 8%,
+            rgba(230, 195, 177, 0.28),
+            transparent 30%),
+        linear-gradient(135deg,
+            #fffdfb 0%,
+            #faf2ec 55%,
+            #f7e9df 100%);
+
+    color: #4b352d;
+}
+
+
+.mood-container {
+    width: min(1120px, 100%);
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.mood-hero {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 26px;
+}
+
+
+.mood-hero-small {
+    margin: 0 0 6px;
+
+    color: #b08370;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+.mood-hero h1 {
+    margin: 0;
+
+    max-width: 600px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(42px, 5vw, 64px);
+
+    line-height: 0.98;
+
+    font-weight: 600;
+
+    color: #4c342d;
+}
+
+
+.mood-hero h1 span {
+    display: block;
+
+    color: #c6816e;
+
+    font-style: italic;
+}
+
+
+.mood-hero-description {
+    margin: 9px 0 0;
+
+    color: #927c73;
+
+    font-size: 12px;
+}
+
+
+.mood-sparkle {
+    display: flex;
+
+    width: 38px;
+    height: 38px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    color: #956b5b;
+
+    box-shadow:
+        0 8px 25px rgba(91, 55, 40, 0.08);
+}
+
+
+/* =========================================================
+   DETECTION GRID
+========================================================= */
+
+.mood-detection-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr) minmax(270px, 0.8fr);
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   PHOTO CARD
+========================================================= */
+
+.mood-photo-card {
+    padding: 14px;
+
+    border: 1px solid rgba(113, 76, 60, 0.08);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 253, 251, 0.9);
+
+    box-shadow:
+        0 15px 40px rgba(94, 58, 43, 0.08);
+}
+
+
+.mood-card-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 2px 3px 10px;
+
+    color: #8c685b;
+}
+
+
+.mood-card-header h2 {
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #563d34;
+}
+
+
+.mood-card-header p {
+    margin: 3px 0 0;
+
+    color: #a18b82;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.mood-photo-container {
+    height: 215px;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background:
+        radial-gradient(circle,
+            #f8e9df,
+            #e9cfc0);
+}
+
+
+.mood-photo {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+.mood-photo-placeholder {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #b08777;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.mood-file-input {
+    display: none;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.mood-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 9px;
+}
+
+
+.mood-primary-button,
+.mood-camera-button,
+.mood-secondary-button,
+.mood-detect-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* =========================================================
+   CHOOSE PHOTO
+========================================================= */
+
+.mood-primary-button {
+    padding: 9px 13px;
+
+    background: #5b4037;
+
+    color: white;
+}
+
+
+.mood-primary-button:hover {
+    background: #68483e;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 15px rgba(81, 56, 47, 0.15);
+}
+
+
+/* =========================================================
+   CAMERA BUTTON
+========================================================= */
+
+.mood-camera-button {
+    padding: 9px 13px;
+
+    background: #ead5ca;
+
+    color: #67483e;
+}
+
+
+.mood-camera-button:hover {
+    background: #dfc3b4;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 15px rgba(113, 76, 60, 0.12);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.mood-secondary-button {
+    padding: 9px 13px;
+
+    background: #f1e3da;
+
+    color: #765548;
+}
+
+
+.mood-secondary-button:hover {
+    background: #ead7cd;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DETECT MOOD
+========================================================= */
+
+.mood-detect-button {
+    width: 100%;
+
+    margin-top: 7px;
+
+    padding: 10px;
+
+    background: #51382f;
+
+    color: white;
+
+    box-shadow:
+        0 8px 18px rgba(81, 56, 47, 0.15);
+}
+
+
+.mood-detect-button:hover {
+    background: #604238;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 22px rgba(81, 56, 47, 0.2);
+}
+
+
+.mood-detect-button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.45;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   CURRENT MOOD CARD
+========================================================= */
+
+.mood-current-card {
+    min-height: 287px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(113, 76, 60, 0.08);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 253, 251, 0.85);
+
+    box-shadow:
+        0 15px 40px rgba(94, 58, 43, 0.06);
+}
+
+
+.mood-current-top {
+    color: #a4877b;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+}
+
+
+.mood-result-title {
+    margin: 9px 0 3px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 28px;
+
+    text-transform: capitalize;
+
+    color: #52372f;
+}
+
+
+.mood-result-description {
+    margin: 0;
+
+    max-width: 210px;
+
+    color: #907970;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.mood-confidence-text {
+    margin-top: 13px;
+
+    color: #a0897f;
+
+    font-size: 9px;
+}
+
+
+.mood-confidence-text strong {
+    color: #65473c;
+}
+
+
+/* =========================================================
+   NO RESULT
+========================================================= */
+
+.mood-no-result {
+    height: 235px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #ad9286;
+}
+
+
+.mood-no-result h2 {
+    margin: 10px 0 4px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+
+    color: #6d5045;
+}
+
+
+.mood-no-result p {
+    max-width: 180px;
+
+    margin: 0;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.mood-error {
+    margin-top: 12px;
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    background: #fff0f0;
+
+    color: #a84f4f;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.mood-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+
+.mood-stats>div {
+    padding: 11px 14px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    border: 1px solid rgba(113, 76, 60, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.mood-stats>div:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(91, 57, 43, 0.08);
+}
+
+
+.mood-stats span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #a48c82;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+}
+
+
+.mood-stats strong {
+    color: #5c4137;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================================================
+   PLAYLIST
+========================================================= */
+
+.mood-playlist {
+    margin-top: 30px;
+}
+
+
+.mood-playlist-heading {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+
+.mood-playlist-heading p {
+    margin: 0 0 4px;
+
+    color: #b17d69;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+.mood-playlist-heading h2 {
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+
+    color: #54382f;
+}
+
+
+.mood-playlist-heading>span {
+    color: #a38a80;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   SONG GRID
+========================================================= */
+
+.mood-song-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 9px;
+}
+
+
+/* =========================================================
+   SONG CARD
+========================================================= */
+
+.mood-song-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #fffdfb;
+
+    border: 1px solid rgba(113, 76, 60, 0.07);
+
+    box-shadow:
+        0 10px 28px rgba(91, 57, 43, 0.08);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+
+.mood-song-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 16px 32px rgba(91, 57, 43, 0.13);
+}
+
+
+/* =========================================================
+   SONG COVER
+========================================================= */
+
+.mood-song-cover {
+    position: relative;
+
+    height: 150px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 20%,
+            #f9e9df,
+            #e5c2b1);
+
+    color: #9b7060;
+}
+
+
+/* REAL YOUTUBE IMAGE */
+
+.mood-song-cover>img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.35s ease;
+}
+
+
+.mood-song-card:hover .mood-song-cover>img {
+    transform: scale(1.06);
+
+    filter: brightness(0.92);
+}
+
+
+/* =========================================================
+   SONG IMAGE FALLBACK
+========================================================= */
+
+.mood-song-cover-fallback {
+    position: absolute;
+
+    inset: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 20%,
+            #f9e9df,
+            #e5c2b1);
+
+    color: #9b7060;
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+========================================================= */
+
+.mood-play-button {
+    position: absolute;
+
+    right: 8px;
+    bottom: 8px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #51382f;
+
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(72, 45, 36, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.mood-play-button:hover {
+    transform: scale(1.08);
+
+    background: #67483d;
+}
+
+
+/* =========================================================
+   SONG INFO
+========================================================= */
+
+.mood-song-info {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 7px;
+
+    padding: 11px;
+}
+
+
+.mood-song-text {
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.mood-song-info h3 {
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #5b4137;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+.mood-song-info p {
+    margin: 4px 0 0;
+
+    overflow: hidden;
+
+    color: #a18b82;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   FAVORITE BUTTON
+========================================================= */
+
+.mood-heart-button {
+    display: flex;
+
+    flex-shrink: 0;
+
+    width: 27px;
+    height: 27px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #eadbd2;
+
+    border-radius: 50%;
+
+    background: #fff9f5;
+
+    color: #b5978b;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.mood-heart-button:hover {
+    transform: scale(1.08);
+
+    background: #f4e2d9;
+}
+
+
+.mood-heart-button.active {
+    background: #e8c0b6;
+
+    border-color: #d9a99d;
+
+    color: #9b5048;
+}
+
+
+/* =========================================================
+   CAMERA OVERLAY
+========================================================= */
+
+.camera-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(55, 38, 32, 0.58);
+
+    backdrop-filter: blur(12px);
+
+    animation:
+        camera-overlay-in 0.2s ease;
+}
+
+
+@keyframes camera-overlay-in {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   CAMERA MODAL
+========================================================= */
+
+.camera-modal {
+    width: min(680px, 100%);
+
+    padding: 22px;
+
+    border-radius: 24px;
+
+    background: #fffaf6;
+
+    box-shadow:
+        0 30px 90px rgba(55, 38, 32, 0.3);
+
+    animation:
+        camera-modal-in 0.25s ease;
+}
+
+
+@keyframes camera-modal-in {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   CAMERA HEADER
+========================================================= */
+
+.camera-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+
+.camera-modal-header span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #a47767;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+}
+
+
+.camera-modal-header h2 {
+    margin: 0;
+
+    color: #563d34;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 25px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CAMERA CLOSE
+========================================================= */
+
+.camera-close-button {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #f0e0d7;
+
+    color: #67483e;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.camera-close-button:hover {
+    transform: rotate(5deg);
+
+    background: #e6cdc0;
+}
+
+
+/* =========================================================
+   LIVE CAMERA PREVIEW
+========================================================= */
+
+.camera-preview {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #e5c8ba;
+}
+
+
+.camera-preview video,
+.camera-preview img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* Mirror live selfie camera */
+
+.camera-preview video {
+    transform: scaleX(-1);
+}
+
+
+/* =========================================================
+   CAMERA FACE GUIDE
+========================================================= */
+
+.camera-guide {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    pointer-events: none;
+}
+
+
+.face-frame {
+    width: 210px;
+
+    height: 270px;
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+
+    border-radius: 48%;
+
+    box-shadow:
+        0 0 0 999px rgba(57, 39, 33, 0.15);
+}
+
+
+.camera-guide span {
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(54, 37, 32, 0.58);
+
+    color: white;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CAMERA CANVAS
+========================================================= */
+
+.camera-canvas {
+    display: none;
+}
+
+
+/* =========================================================
+   CAMERA ERROR
+========================================================= */
+
+.camera-error {
+    margin-top: 12px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    background: #fff0f0;
+
+    border: 1px solid rgba(168, 79, 79, 0.12);
+
+    color: #a84f4f;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CAMERA ACTIONS
+========================================================= */
+
+.camera-actions {
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 14px;
+}
+
+
+.camera-actions button {
+    min-height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.camera-actions button:hover {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TAKE PHOTO
+========================================================= */
+
+.camera-capture-button {
+    flex: 1;
+
+    background: #51382f;
+
+    color: white;
+
+    box-shadow:
+        0 8px 18px rgba(81, 56, 47, 0.18);
+}
+
+
+.camera-capture-button:hover {
+    background: #62443a;
+
+    box-shadow:
+        0 11px 24px rgba(81, 56, 47, 0.24);
+}
+
+
+.camera-capture-button:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   RETAKE
+========================================================= */
+
+.camera-retake-button {
+    flex: 0.45;
+
+    background: #f0e1d8;
+
+    color: #67483e;
+}
+
+
+.camera-retake-button:hover {
+    background: #e7d2c8;
+}
+
+
+/* =========================================================
+   USE PHOTO
+========================================================= */
+
+.camera-use-button {
+    flex: 1;
+
+    background: #51382f;
+
+    color: white;
+
+    box-shadow:
+        0 8px 18px rgba(81, 56, 47, 0.18);
+}
+
+
+.camera-use-button:hover {
+    background: #62443a;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.spin {
+    animation:
+        mood-spin 0.8s linear infinite;
+}
+
+
+@keyframes mood-spin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .mood-detection-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .mood-song-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    .mood-current-card {
+        min-height: 220px;
+    }
+
+
+    .mood-no-result {
+        height: 170px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .mood-page {
+        padding: 25px 18px 50px;
+    }
+
+
+    .mood-hero {
+        margin-bottom: 20px;
+    }
+
+
+    .mood-hero h1 {
+        font-size: 42px;
+    }
+
+
+    .mood-hero-description {
+        font-size: 11px;
+    }
+
+
+    .mood-detection-grid {
+        gap: 10px;
+    }
+
+
+    .mood-photo-card,
+    .mood-current-card {
+        border-radius: 17px;
+    }
+
+
+    .mood-photo-container {
+        height: 240px;
+    }
+
+
+    .mood-actions {
+        flex-wrap: wrap;
+    }
+
+
+    .mood-primary-button,
+    .mood-camera-button,
+    .mood-secondary-button {
+        flex: 1;
+    }
+
+
+    .mood-song-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .mood-song-cover {
+        height: 145px;
+    }
+
+
+    .mood-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .mood-playlist-heading {
+        align-items: flex-end;
+    }
+
+
+    .mood-playlist-heading h2 {
+        font-size: 24px;
+    }
+
+
+    /* CAMERA */
+
+    .camera-overlay {
+        padding: 10px;
+    }
+
+
+    .camera-modal {
+        padding: 17px;
+
+        border-radius: 20px;
+    }
+
+
+    .camera-modal-header h2 {
+        font-size: 22px;
+    }
+
+
+    .face-frame {
+        width: 170px;
+
+        height: 220px;
+    }
+
+
+    .camera-actions {
+        flex-direction: column;
+    }
+
+
+    .camera-retake-button {
+        flex: 1;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL PHONE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .mood-page {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+    .mood-hero h1 {
+        font-size: 36px;
+    }
+
+
+    .mood-sparkle {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .mood-song-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .mood-song-cover {
+        height: 190px;
+    }
+
+
+    .mood-actions {
+        flex-direction: column;
+    }
+
+
+    .mood-primary-button,
+    .mood-camera-button,
+    .mood-secondary-button {
+        width: 100%;
+
+        flex: none;
+    }
+
+
+    .camera-modal-header h2 {
+        font-size: 20px;
+    }
+
+
+    .face-frame {
+        width: 150px;
+
+        height: 195px;
+    }
+
+}

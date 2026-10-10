@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environment secrets
+.env
+
+# Large ML models
+backend/models/*.onnx
