@@ -3,7 +3,8 @@ import os
 import cv2
 import numpy as np
 import onnxruntime as ort
-from utils.preprocessing import (
+
+from backend.utils.preprocessing import (
     crop_face,
     decode_image,
     detect_faces,
