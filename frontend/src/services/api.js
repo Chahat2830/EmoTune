@@ -1,44 +1,31 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "https://emotune-qna4.onrender.com"
+).replace(/\/+$/, "");
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000,
+  timeout: 60000,
 });
 
-// ============================================================
 // HEALTH CHECK
-// ============================================================
-
 export const checkHealth = async () => {
   const response = await api.get("/health");
-
   return response.data;
 };
 
-// ============================================================
 // MOOD DETECTION
-// ============================================================
-
 export const detectMood = async (imageFile) => {
   const formData = new FormData();
-
   formData.append("file", imageFile);
 
-  const response = await api.post("/api/detect-mood", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const response = await api.post("/api/detect-mood", formData);
 
   return response.data;
 };
 
-// ============================================================
-// RECOMMENDATIONS
-// ============================================================
-
+// SONG RECOMMENDATIONS
 export const getRecommendations = async (mood) => {
   const response = await api.get(
     `/api/recommendations/${encodeURIComponent(mood)}`,
