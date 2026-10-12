@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.services.emotion import detect_emotion
 from backend.services.recommender import get_recommendations
 
+
 app = FastAPI(
     title="Mood AI API",
     description="AI Mood-Based Music Recommendation API",
@@ -14,17 +15,18 @@ app = FastAPI(
 
 
 # ============================================================
-# CORS
+# CORS CONFIGURATION
 # ============================================================
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://emo-tune-omega.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -43,7 +45,7 @@ def root():
 
 
 # ============================================================
-# HEALTH
+# HEALTH CHECK
 # ============================================================
 
 @app.get("/health")
@@ -59,12 +61,15 @@ def health():
 
 @app.post("/api/detect-mood")
 async def detect_mood(
-    file: Annotated[
-        UploadFile,
-        File(),
-    ],
+    file: Annotated[UploadFile, File()],
 ):
     try:
+        if file.content_type and not file.content_type.startswith("image/"):
+            raise HTTPException(
+                status_code=400,
+                detail="Please upload a valid image file.",
+            )
+
         image_bytes = await file.read()
 
         if not image_bytes:
@@ -73,23 +78,21 @@ async def detect_mood(
                 detail="Empty image file.",
             )
 
-        result = detect_emotion(
-            image_bytes
-        )
+        result = detect_emotion(image_bytes)
 
         return {
             "status": "success",
             **result,
         }
 
+    except HTTPException:
+        raise
+
     except ValueError as error:
         raise HTTPException(
             status_code=400,
             detail=str(error),
         ) from error
-
-    except HTTPException:
-        raise
 
     except Exception as error:
         raise HTTPException(
@@ -97,29 +100,39 @@ async def detect_mood(
             detail=f"Mood detection failed: {error}",
         ) from error
 
+    finally:
+        await file.close()
+
 
 # ============================================================
-# RECOMMENDATIONS
+# SONG RECOMMENDATIONS
 # ============================================================
 
-@app.get(
-    "/api/recommendations/{mood}"
-)
-def recommendations(
-    mood: str,
-):
+@app.get("/api/recommendations/{mood}")
+def recommendations(mood: str):
     try:
+        normalized_mood = mood.strip().lower()
+
+        if not normalized_mood:
+            raise HTTPException(
+                status_code=400,
+                detail="Mood cannot be empty.",
+            )
+
         songs = get_recommendations(
-            mood=mood,
+            mood=normalized_mood,
             limit=10,
         )
 
         return {
             "status": "success",
-            "mood": mood.lower(),
+            "mood": normalized_mood,
             "count": len(songs),
             "songs": songs,
         }
+
+    except HTTPException:
+        raise
 
     except ValueError as error:
         raise HTTPException(
@@ -130,8 +143,5 @@ def recommendations(
     except Exception as error:
         raise HTTPException(
             status_code=500,
-            detail=(
-                "Recommendation failed: "
-                f"{error}"
-            ),
+            detail=f"Recommendation failed: {error}",
         ) from error
