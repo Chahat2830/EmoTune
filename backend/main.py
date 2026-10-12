@@ -3,9 +3,8 @@ from typing import Annotated
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from services.emotion import detect_emotion
-from services.recommender import get_recommendations
-
+from backend.services.emotion import detect_emotion
+from backend.services.recommender import get_recommendations
 
 app = FastAPI(
     title="Mood AI API",
