@@ -838,92 +838,116 @@ export default function Mood() {
 
   const handleDetectMood =
     async () => {
-
       if (!selectedFile) {
-
-        setError(
-          "Please choose a photo first."
-        );
-
+        setError("Please choose a photo first.");
         return;
-
       }
 
+      setLoading(true);
+      setError("");
+      setMood(null);
+      setConfidence(null);
+      setSongs([]);
+
+      let detectedMood = "";
 
       try {
+        const result = await detectMood(selectedFile);
+        console.log("Mood detection API response:", result);
 
-        setLoading(true);
+        detectedMood = String(result?.mood || "").trim().toLowerCase();
 
-        setError("");
-
-
-        // ====================================================
-        // SEND IMAGE TO FASTAPI
-        // ====================================================
-
-        const result =
-          await detectMood(
-            selectedFile
+        if (!detectedMood) {
+          throw new Error(
+            "The detection API responded, but no mood was returned. Check the backend response in the browser console."
           );
+        }
 
+        setMood(detectedMood);
 
-        // ====================================================
-        // GET DETECTED MOOD
-        // ====================================================
-
-        const detectedMood =
-          result.mood;
-
-
-        setMood(
-          detectedMood
-        );
-
+        const returnedConfidence =
+          result?.confidence_percent ?? result?.confidence ?? null;
 
         setConfidence(
-          result.confidence_percent
+          returnedConfidence === null
+            ? null
+            : Number(returnedConfidence) <= 1
+              ? Number((Number(returnedConfidence) * 100).toFixed(2))
+              : Number(returnedConfidence)
         );
-
-
-        // ====================================================
-        // GET RECOMMENDATIONS
-        // ====================================================
-
-        const recommendation =
-          await getRecommendations(
-            detectedMood
-          );
-
-
-        setSongs(
-          recommendation.songs ||
-            []
-        );
-
       } catch (err) {
+        console.error("Mood detection request failed:", {
+          message: err?.message,
+          status: err?.response?.status,
+          response: err?.response?.data,
+          url: err?.config?.baseURL
+            ? `${err.config.baseURL}${err.config.url || ""}`
+            : err?.config?.url,
+          error: err,
+        });
 
-        console.error(
-          "Mood detection error:",
-          err
-        );
-
-
-        setError(
-          err?.response?.data
-            ?.detail ||
-            "Unable to detect your mood. Please try again."
-        );
-
-      } finally {
+        if (err?.response?.data?.detail) {
+          setError(String(err.response.data.detail));
+        } else if (err?.response?.status) {
+          setError(
+            `Mood detection failed (HTTP ${err.response.status}). Check the backend logs for details.`
+          );
+        } else if (err?.message?.toLowerCase().includes("network")) {
+          setError(
+            "Cannot reach the mood-detection API. Check backend CORS settings and the VITE_API_URL deployment variable."
+          );
+        } else {
+          setError(
+            err?.message ||
+              "Unable to detect your mood. Check the browser console for details."
+          );
+        }
 
         setLoading(false);
-
+        return;
       }
 
+      // Keep a successful mood result even if recommendations fail.
+      try {
+        const recommendation = await getRecommendations(detectedMood);
+        console.log("Recommendations API response:", recommendation);
+
+        if (Array.isArray(recommendation?.songs)) {
+          setSongs(recommendation.songs);
+
+          if (recommendation.songs.length === 0) {
+            setError(
+              "Your mood was detected, but no songs were returned for this mood."
+            );
+          }
+        } else {
+          setSongs([]);
+          setError(
+            "Your mood was detected, but the recommendation response did not contain a songs list."
+          );
+        }
+      } catch (err) {
+        console.error("Recommendations request failed:", {
+          message: err?.message,
+          status: err?.response?.status,
+          response: err?.response?.data,
+          url: err?.config?.baseURL
+            ? `${err.config.baseURL}${err.config.url || ""}`
+            : err?.config?.url,
+          error: err,
+        });
+
+        setError(
+          err?.response?.data?.detail
+            ? `Mood detected, but recommendations failed: ${err.response.data.detail}`
+            : `Mood detected (${detectedMood}), but recommendations could not be loaded. Check the Network tab and backend CORS settings.`
+        );
+      } finally {
+        setLoading(false);
+      }
     };
 
 
-  // ==========================================================
   // YOUTUBE VIDEO ID
   // ==========================================================
 
